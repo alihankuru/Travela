@@ -1,0 +1,40 @@
+﻿@model UpdateDestinationDto
+@{
+    Layout = null;
+    DateTime currentDate = DateTime.Now;
+}
+
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="container">
+    <br /><br />
+    <form method="post">
+        <label>Şehir Adı</label>
+        <input type="text" asp-for="City" class="form-control" />
+        <br />
+        <label>Ülke Adı</label>
+        <input type="text" asp-for="Country" class="form-control" />
+        <br />
+        <label>Resim URL</label>
+        <input type="text" asp-for="ImageUrl" class="form-control" />
+        <br />
+        <label>Gün Sayısı</label>
+        <input type="text" asp-for="CountDay" class="form-control" />
+        <br />
+        <label>Alt Başlık</label>
+        <input type="text" asp-for="SubTitle" class="form-control" />
+        <br />
+        <label>Açıklama</label>
+        <input type="text" asp-for="Description" class="form-control" />
+        <br />
+        <label>Fiyat</label>
+        <input type="text" asp-for="Price" class="form-control" />
+        <br />
+        <input type="hidden" asp-for="Date" value="@currentDate" class="form-control" />
+        <input type="hidden" asp-for="DestinationId"  class="form-control" />
+
+        <button class="btn btn-primary">Destination Kaydet</button>
+    </form>
+</div>

@@ -18,6 +18,11 @@ namespace Travela.BusinessLayer.Concrete
             _categoryDal = categoryDal;
         }
 
+        public int TGetCategoryCount()
+        {
+            return _categoryDal.GetCategoryCount();
+        }
+
         public void TDelete(int id)
         {
             _categoryDal.Delete(id);
