@@ -1,3 +1,4 @@
+using System.Reflection;
 using Travela.BusinessLayer.Abstract;
 using Travela.BusinessLayer.Concrete;
 using Travela.DataAccessLayer.Abstract;
@@ -16,10 +17,28 @@ builder.Services.AddScoped<IDestinationService,DestinationManager>();
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
+builder.Services.AddScoped<IAboutDal, EfAboutDal>();
+builder.Services.AddScoped<IAboutService, AboutManager>();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", opts =>
+    {
+        opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+     
+});
+
+
+
 
 var app = builder.Build();
 
@@ -31,6 +50,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 
