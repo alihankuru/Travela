@@ -39,7 +39,8 @@ namespace Travela.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        
+        [HttpDelete("DeleteAbout/{id}")]
         public IActionResult DeleteAbout(int id)
         {
             _aboutService.TDelete(id);
@@ -53,7 +54,7 @@ namespace Travela.WebApi.Controllers
             return Ok(value);
         }
 
-        [HttpPut]
+        [HttpPost("Update")]
         public IActionResult UpdateAbout(AboutUpdateDto aboutUpdateDto)
         {
             if (!ModelState.IsValid)
