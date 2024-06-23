@@ -36,7 +36,7 @@ namespace Travela.WebApi.Controllers
             }
             var values = _mapper.Map<About>(aboutAddDto);
             _aboutService.TInsert(values);
-            return Ok();
+            return StatusCode(200, new { message = "Create successful" });
         }
 
         
@@ -44,7 +44,7 @@ namespace Travela.WebApi.Controllers
         public IActionResult DeleteAbout(int id)
         {
             _aboutService.TDelete(id);
-            return Ok("Kategori silme işlemi başarıyla tamamlandı");
+            return StatusCode(200);
         }
 
         [HttpGet("GetAbout")]
@@ -64,7 +64,7 @@ namespace Travela.WebApi.Controllers
             var values = _mapper.Map<About>(aboutUpdateDto);
             _aboutService.TUpdate(values);
 
-            return Ok("Hakkımızda güncelleme işlemi başarıyla tammalandı.");
+            return StatusCode(200, new { message = "Update successful" });
         }
 
     }

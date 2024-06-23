@@ -20,6 +20,12 @@ builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
 builder.Services.AddScoped<IAboutService, AboutManager>();
 
+builder.Services.AddScoped<IFeatureDal, EfFeatureDal>();
+builder.Services.AddScoped<IFeatureService, FeatureManager>();
+
+builder.Services.AddScoped<IServiceDal, EfServiceDal>();
+builder.Services.AddScoped<IServiceService, ServiceManager>();
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 

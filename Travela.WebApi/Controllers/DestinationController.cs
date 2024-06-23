@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Travela.BusinessLayer.Abstract;
+using Travela.DtoLayer.Dtos.AboutDto;
+using Travela.DtoLayer.Dtos.DestinationDto;
 using Travela.EntityLayer.Concrete;
 
 namespace Travela.WebApi.Controllers
@@ -10,32 +13,38 @@ namespace Travela.WebApi.Controllers
     public class DestinationController : ControllerBase
     {
         private readonly IDestinationService _destinationService;
+        private readonly IMapper _mapper;
 
-        public DestinationController(IDestinationService destinationService)
+        public DestinationController(IDestinationService destinationService, IMapper mapper)
         {
             _destinationService = destinationService;
+            _mapper = mapper;
         }
 
-
-        [HttpGet]
-        public IActionResult DestinationList()
+        [HttpPost("DestinationList")] // Change HttpGet to HttpPost
+        public IActionResult AboutList()
         {
             var values = _destinationService.TGetListAll();
-            return Ok(values);  
+            return Ok(values);
         }
 
         [HttpPost]
-        public IActionResult CreateDestination(Destination Destination)
+        public IActionResult CreateDestination(DestinationAddDto destinationAddDto)
         {
-            _destinationService.TInsert(Destination);
-            return Ok("Kategori ekleme işlemi başarıyla tamamlandı.");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var values = _mapper.Map<Destination>(destinationAddDto);
+            _destinationService.TInsert(values);
+            return StatusCode(200, new { message = "Create successful" });
         }
 
-        [HttpDelete]
-        public IActionResult DeleteDestination(int id)
+        [HttpDelete("DeleteDestination/{id}")]
+        public IActionResult DeleteAbout(int id)
         {
             _destinationService.TDelete(id);
-            return Ok("Kategori silme işlemi başarıyla tamamlandı");
+            return StatusCode(200);
         }
 
         [HttpGet("GetDestination")]
@@ -45,11 +54,18 @@ namespace Travela.WebApi.Controllers
             return Ok(value);
         }
 
-        [HttpPut]
-        public IActionResult UpdateDestination(Destination Destination)
+        [HttpPost("Update")]
+        public IActionResult UpdateDestination(DestinationUpdateDto destinationUpdateDto)
         {
-            _destinationService.TUpdate(Destination);
-            return Ok("Kategori güncelleme işlemi başarıyla tammalandı.");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var values = _mapper.Map<Destination>(destinationUpdateDto);
+            _destinationService.TUpdate(values);
+
+            return StatusCode(200, new { message = "Update successful" });
         }
+
     }
 }
