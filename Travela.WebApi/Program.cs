@@ -26,6 +26,19 @@ builder.Services.AddScoped<IFeatureService, FeatureManager>();
 builder.Services.AddScoped<IServiceDal, EfServiceDal>();
 builder.Services.AddScoped<IServiceService, ServiceManager>();
 
+builder.Services.AddScoped<IPackageDal, EfPackageDal>();
+builder.Services.AddScoped<IPackageService, PackageManager>();
+
+builder.Services.AddScoped<IGuideDal, EfGuideDal>();
+builder.Services.AddScoped<IGuideService, GuideManager>();
+
+builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
+builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
+
+builder.Services.AddScoped<ICarouselDal, EfCarouselDal>();
+builder.Services.AddScoped<ICarouselService, CarouselManager>();
+
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
