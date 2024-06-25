@@ -4,6 +4,7 @@ using Travela.BusinessLayer.Concrete;
 using Travela.DataAccessLayer.Abstract;
 using Travela.DataAccessLayer.Context;
 using Travela.DataAccessLayer.EntityFramework;
+using Travela.EntityLayer.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,8 @@ builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 builder.Services.AddScoped<ICarouselDal, EfCarouselDal>();
 builder.Services.AddScoped<ICarouselService, CarouselManager>();
 
+builder.Services.AddScoped<IFooterDal, EfFooterDal>();
+builder.Services.AddScoped<IFooterService, FooterManager>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

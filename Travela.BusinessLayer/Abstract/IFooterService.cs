@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Travela.EntityLayer.Concrete;
 
-namespace Travela.DataAccessLayer.Abstract
+namespace Travela.BusinessLayer.Abstract
 {
-    public interface IFooterDal : IGenericDal<Footer>
+    public interface IFooterService : IGenericeService<Footer>
     {
     }
 }

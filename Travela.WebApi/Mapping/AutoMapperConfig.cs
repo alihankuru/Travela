@@ -3,6 +3,7 @@ using Travela.DtoLayer.Dtos.AboutDto;
 using Travela.DtoLayer.Dtos.CarouselDto;
 using Travela.DtoLayer.Dtos.DestinationDto;
 using Travela.DtoLayer.Dtos.FeatureDto;
+using Travela.DtoLayer.Dtos.FooterDto;
 using Travela.DtoLayer.Dtos.GuideDto;
 using Travela.DtoLayer.Dtos.PackageDto;
 using Travela.DtoLayer.Dtos.ServiceDto;
@@ -38,6 +39,9 @@ namespace Travela.WebApi.Mapping
 
             CreateMap<CarouselAddDto, Carousel>().ReverseMap();
             CreateMap<CarouselUpdateDto, Carousel>().ReverseMap();
+
+            CreateMap<FooterAddDto, Footer>().ReverseMap();
+            CreateMap<FooterUpdateDto, Footer>().ReverseMap();
 
         }
 
