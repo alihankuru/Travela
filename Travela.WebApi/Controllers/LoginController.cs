@@ -8,13 +8,13 @@ namespace Travela.WebApi.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        [HttpGet("[login]")]
+        [HttpGet]
         public IActionResult Login()
         {
             return Ok(new CreateToken().TokenCreate());
         }
 
-        [HttpGet("[register]")]
+        [HttpPost]
         public IActionResult Register()
         {
             return Ok(new CreateToken().TokenCreate());
