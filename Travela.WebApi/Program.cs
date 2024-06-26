@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 using Travela.BusinessLayer.Abstract;
 using Travela.BusinessLayer.Concrete;
 using Travela.DataAccessLayer.Abstract;
@@ -9,6 +12,19 @@ using Travela.EntityLayer.Concrete;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidIssuer="http://localhost",
+        ValidAudience= "http://localhost",
+        IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aspnetcoreapiapi")),
+        ValidateIssuerSigningKey=true,
+        ValidateLifetime=true,
+    };
+});
 
 builder.Services.AddDbContext<TravelaContext>();
 
